@@ -7,11 +7,12 @@ import model.Histogram;
 import model.Mail;
 import view.HistogramDisplay;
 import view.MailHistogramBuilder;
-import view.MailListReader;
+import view.MailListReaderBD;
 
 public class KATA4 {
-    private String fileName;
-    private MailListReader reader;
+    private String BD;
+    private String table;
+    private MailListReaderBD reader;
     private List<Mail> mailList;
     private MailHistogramBuilder builder;
     private Histogram<String> histogram;
@@ -29,13 +30,10 @@ public class KATA4 {
     }
     
     public void input(){
-        try {
-            fileName = "email.txt";
-            reader = new MailListReader();
-            mailList = reader.read(fileName);
-        } catch (Exception e) {
-            System.err.println("Hubo un error con la lectura del archivo");
-        }
+        BD = "KATA5.db";
+        table = "EMAIL";
+        reader = new MailListReaderBD();
+        mailList = reader.read(BD, table);
     }
     
     public void process(){
